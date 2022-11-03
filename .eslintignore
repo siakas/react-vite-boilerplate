@@ -1,0 +1,11 @@
+.next/
+build/
+dist/
+node_modules/
+public/
+package.json
+package-lock.json
+yarn.lock
+vite.config.ts
+# .eslintrc.js
+# .stylelint.js
