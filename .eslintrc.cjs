@@ -15,9 +15,8 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    // 以下二行を有効化すると module.exports が記述エラーになるため、いったんコメントアウト
-    // tsconfigRootDir: '.',
-    // project: ['./tsconfig.json'],
+    tsconfigRootDir: '.',
+    project: ['./tsconfig.json'],
     sourceType: 'module',
   },
   plugins: [

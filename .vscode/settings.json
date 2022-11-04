@@ -28,16 +28,11 @@
   // JSX でも CSS クラスを補完できるように
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
 
   // // Emmet で Tailwind CSS のクラスを使えるように
-  // "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.emmetCompletions": true,
 
   // // Tailwind CSS の Directives を Lint する
-  // "tailwindCSS.validate": true
-
-  // "[json]": {
-  //   "editor.formatOnSave": false,
-  //   "editor.formatOnPaste": false
-  // }
+  "tailwindCSS.validate": true
 }
