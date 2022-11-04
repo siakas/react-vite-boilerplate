@@ -20,7 +20,13 @@ module.exports = {
     // project: ['./tsconfig.json'],
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'jsx-a11y', 'react', 'react-hooks'],
+  plugins: [
+    '@typescript-eslint',
+    'jsx-a11y',
+    'react',
+    'react-hooks',
+    'unused-imports',
+  ],
   settings: {
     react: {
       version: 'detect',
@@ -61,11 +67,27 @@ module.exports = {
 
     // 使用していない変数の定義を許可しないルール
     // ここでは変数および引数の名前の頭に `_` をつけた時のみ許容するよう設定
-    '@typescript-eslint/no-unused-vars': [
-      'error',
+    // eslint-plugin-unused-imports を併用する場合はこちらの設定はコンフリクトするのでコメントアウトする
+    // '@typescript-eslint/no-unused-vars': [
+    //   'error',
+    //   {
+    //     argsIgnorePattern: '^_',
+    //     varsIgnorePattern: '^_',
+    //   },
+    // ],
+
+    // 使用していないインポートを自動削除するルール
+    // 本プラグインとコンフリクトを起こす no-unused-vars の設定を無効化し、
+    // 変数および引数の名前の頭に `_` をつけた場合のみ許可する設定をこちらでおこなっている
+    '@typescript-eslint/no-unused-vars': 'off', // or 'no-unused-vars': 'off'
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
       {
-        argsIgnorePattern: '^_',
+        vars: 'all',
         varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
       },
     ],
 
@@ -176,14 +198,27 @@ module.exports = {
         html: false,
       },
     ],
+
+    // Next.js における img 要素の使用を禁止するルール
+    // 一般的な静的サイト構築において img 要素の全面禁止は不便なので無効化
+    '@next/next/no-img-element': 'off',
   },
   overrides: [
     {
-      files: ['*.tsx'],
+      files: ['*.ts', '*.tsx'],
       rules: {
         // コンポーネントの props に型チェックをおこなうための propTypes プロパティの定義を強制するルール
         // TypeScript の場合は不要なので、ファイル拡張子が `.tsx` の場合に無効化するよう設定を上書き
         'react/prop-types': 'off',
+
+        // JSX における不明な属性値に対するルール
+        // ここでは Emotion で利用する `css` 属性を許容するよう設定
+        'react/no-unknown-property': [
+          'error',
+          {
+            ignore: ['css'],
+          },
+        ],
       },
     },
   ],
