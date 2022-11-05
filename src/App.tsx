@@ -21,7 +21,7 @@ const App: FC = () => {
       </div>
       <h1>
         Vite + React
-        <br />({title}) Vite + React
+        <br />({title})
       </h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
