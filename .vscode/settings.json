@@ -14,10 +14,10 @@
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifier": "non-relative",
 
-  // VS Code の CSS, SCSS の Lint オフ
-  // Stylelint とのバッティング回避
+  // Stylelint とのバッティング回避のため、VS Code 標準の自動整形を無効化（CSS, SCSS, LESS）
   "css.validate": false,
   "scss.validate": false,
+  "less.validate": false,
 
   // Stylelint のフォーマットを実行する拡張子を指定
   // "stylelint.validate": ["css", "scss", "postcss", "ts", "tsx"],
