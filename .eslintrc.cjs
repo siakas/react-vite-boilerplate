@@ -56,7 +56,7 @@ module.exports = {
     // Promise の誤用を防ぐためのルール
     // 何も返さない async 関数のコールに明示的に void キーワードをつけることを強制され、
     // かつ、コンポーネントのイベント属性に async 関数を渡す際に、
-    // (e) => { void handleSubmit(e) } のような煩雑な記述を強いられるのを部分的に無効化
+    // (e): void => { handleSubmit(e) } のような煩雑な記述を強いられるのを部分的に無効化
     '@typescript-eslint/no-misused-promises': [
       'error',
       {
@@ -107,6 +107,11 @@ module.exports = {
         types: 'always',
       },
     ],
+
+    // autoFocus 属性の使用を禁止するルール
+    // autoFocus 属性の使用はユーザビリティを損なうため禁止は妥当なのだが、
+    // デフォルトで有効化されてるフレームワーク等に対して値を false にしたい場合でもエラーになってしまうので判定を無効化
+    'jsx-a11y/no-autofocus': 'off',
 
     // インポートの際のファイル拡張子を記述するかを定義するルール
     // ここでは npm パッケージ以外のファイルについて、`.js`、`.jsx`、`.ts`、`.tsx` のみ拡張子を省略し、
@@ -197,6 +202,10 @@ module.exports = {
         html: false,
       },
     ],
+
+    // React Hook における依存関係を示す第二引数の内容を明示させるルール
+    // 第二引数に空配列を指定したい場合にも警告が出てしまうので無効化
+    'react-hooks/exhaustive-deps': 'off',
 
     // Next.js における img 要素の使用を禁止するルール
     // 一般的な静的サイト構築において img 要素の全面禁止は不便なので無効化
