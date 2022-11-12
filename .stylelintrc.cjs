@@ -2,9 +2,13 @@ module.exports = {
   extends: [
     'stylelint-config-recess-order',
     'stylelint-config-sass-guidelines',
+    'stylelint-prettier/recommended',
   ],
+  plugin: ['stylelint-prettier'],
   ignoreFiles: ['**/node_modules/**'],
   rules: {
+    'prettier/prettier': true,
+
     // アルファベット順のソートを無効化（stylelint-config-recess-order のソートを優先）
     'order/properties-alphabetical-order': null,
 
