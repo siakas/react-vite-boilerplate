@@ -69,6 +69,10 @@ module.exports = {
       },
     ],
 
+    // 本ルールについての説明、補足を追加すること
+    // `${process.env.REACT_APP_REST_URL}/tasks/` のような記述に対するエラーを無効化している
+    '@typescript-eslint/restrict-template-expressions': 'off',
+
     // 使用していない変数の定義を許可しないルール
     // ここでは変数および引数の名前の頭に `_` をつけた時のみ許容するよう設定
     // eslint-plugin-unused-imports を併用する場合はこちらの設定はコンフリクトするのでコメントアウトする
