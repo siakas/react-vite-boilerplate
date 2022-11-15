@@ -3,7 +3,6 @@ import axios from 'axios'
 
 import { Task } from '@/types/types'
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useQueryTasks = () => {
   const getTasks = async () => {
     const { data } = await axios.get<Task[]>(

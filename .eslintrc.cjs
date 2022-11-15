@@ -50,8 +50,13 @@ module.exports = {
     // 関数の戻り値に必ず型定義を書かなければいけないルール
     // eslint-config-standard-with-typescript が全面採用しているが厳しすぎるため、
     // その適用がエクスポートされる関数に限られる @typescript-eslint/explicit-module-boundary-types に入れ替え
+    // 追記：
+    // @typescript-eslint/explicit-module-boundary-types の方も有効化するメリットがないという意見もあるので error から off に変更
+    // 参考：
+    // https://twitter.com/fiahfy/status/1521724999953879040
+    // https://github.com/typescript-eslint/typescript-eslint/issues/3746
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': ['error'],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
 
     // Promise の誤用を防ぐためのルール
     // 何も返さない async 関数のコールに明示的に void キーワードをつけることを強制され、
