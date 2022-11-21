@@ -26,4 +26,51 @@ export const useMutateTask = () => {
       },
     }
   )
+
+  // Task をアップデートするためのミューテーション
+  const updateTaskMutation = useMutation(
+    async (task: EditTask) =>
+      await axios.put<Task>(
+        `${process.env.REACT_APP_REST_URL}/tasks/${task.id}`,
+        task
+      ),
+    {
+      onSuccess: (res, variables) => {
+        const previousTodos = queryClient.getQueryData<Task[]>(['tasks'])
+        if (previousTodos) {
+          queryClient.setQueryData<Task[]>(
+            ['tasks'],
+            previousTodos.map((task) =>
+              task.id === variables.id ? res.data : task
+            )
+          )
+        }
+        dispatch(resetEditedTask())
+      },
+    }
+  )
+
+  // Task を削除するためのミューテーション
+  const deleteTaskMutation = useMutation(
+    async (id: number) =>
+      await axios.delete(`${process.env.REACT_APP_REST_URL}/tasks/${id}`),
+    {
+      onSuccess: (res, variables) => {
+        const previousTodos = queryClient.getQueryData<Task[]>(['tasks'])
+        if (previousTodos) {
+          queryClient.setQueryData<Task[]>(
+            ['tasks'],
+            previousTodos.filter((task) => task.id !== variables)
+          )
+        }
+        dispatch(resetEditedTask())
+      },
+    }
+  )
+
+  return {
+    createTaskMutation,
+    updateTaskMutation,
+    deleteTaskMutation,
+  }
 }
